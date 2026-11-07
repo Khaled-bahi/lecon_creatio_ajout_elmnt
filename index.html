@@ -36,7 +36,7 @@
         </ul>
 
 
-        <button class="sup_tous">supprimer tous les étudiants</button>
+        <button class="sup_tous" onclick="supp_all()">supprimer tous les étudiants</button>
 
     </div>
 
@@ -96,6 +96,11 @@
         update_cntr()
 
 
+      }
+
+      function supp_all(){
+        list_etd.innerHTML=""
+        update_cntr()
       }
        
             
