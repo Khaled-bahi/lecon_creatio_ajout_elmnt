@@ -14,33 +14,101 @@
 
         <div class="ajoute">
             <input type="text"  id="nameinput" placeholder="Nom de l'étudiant">
-            <button class="ajtbtn">Ajouter</button>
+            <button class="ajtbtn" onclick="ajoute_etd()">Ajouter</button>
         </div>
-        <p id="counter"> counter:</p>
+        <p id="counter"></p>
 
-        <ul class="etdlist">
+        <ul class="etdlist" id="list_etd">
             <li>Amine 
-                <button class="dltbtn">supprimer</button>
-            </li>
+               <button class="dltbtn" onclick="supp_etd(this)">supprimer</button>
+            </li> 
 
              <li>moh 
-                <button class="dltbtn">supprimer</button>
+                <button class="dltbtn"  onclick="supp_etd(this)" >supprimer</button>
             </li>
 
 
              <li>amina 
-                <button class="dltbtn">supprimer</button>
+                <button class="dltbtn" onclick="supp_etd(this)">supprimer</button>
             </li>
 
-             <li>sara 
-                <button class="dltbtn">supprimer</button>
-            </li>
+           
         </ul>
 
 
         <button class="sup_tous">supprimer tous les étudiants</button>
 
     </div>
+
+
+
+    <script defer>
+
+        // récupérer les elements de html
+
+        const nameinput = document.getElementById("nameinput")
+        const list_etd=document.getElementById("list_etd")
+        const counter = document.getElementById("counter");
+        
+
+          function update_cntr(){
+            counter.textContent="Nombre d'étudiants :" + " " +list_etd.children.length;
+          }
+
+        function ajoute_etd(){
+
+            const name=nameinput.value;
+            if(name === ""){
+                alert("veuillez saisir votre nom");
+                return
+            }
+
+            const li =document.createElement("li");
+            li.textContent=name;
+
+            const btn=document.createElement('button');
+            btn.textContent="supprimer";
+            btn.classList.add("dltbtn")
+             
+            btn.onclick=function(){
+                supp_etd(this)
+            }
+           
+
+
+           li.appendChild(btn)
+
+            
+          
+            list_etd.appendChild(li);
+            nameinput.value=""
+           
+
+            update_cntr()
+
+        }
+
+
+    
+      function supp_etd(btn){
+
+        btn.parentElement.remove()
+        update_cntr()
+
+
+      }
+       
+            
+
+
+
+
+  //ini
+        update_cntr()
+
+
+
+    </script>
     
 </body>
 </html>
